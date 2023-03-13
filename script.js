@@ -154,6 +154,29 @@ XO("zzoo") => false
 
 */
 
+function XO(str) {
+	let array = [...str]
+	let letterX = 0
+	let letterO = 0
+
+	for (let i=0; i<array.length; i++) {
+		if(array[i].toLowerCase() !== "x" || array[i].toLowerCase() !== "o") {
+			continue;
+		} else if (array[i].toLowerCase() === "o") {
+			letterO++
+		} else if (array[i].toLowerCase() === "x") {
+			letterX++
+		}
+	}
+	 if (letterX === letterO) {
+		return true
+	} else {
+		return false
+	}
+}
+
+
+
 
 function XO(str) {
 	let array = [...str]
@@ -161,20 +184,13 @@ function XO(str) {
 	let letterO = 0
 
 	for (let i=0; i<array.length; i++) {
-		if(array[i].toLowerCase() === "x") {
-			letterX++
-		} else if (array[i].toLowerCase() === "o") {
+		if (array[i].toLowerCase() === "o") {
 			letterO++
-		} else {
-			return true
+		} else if (array[i].toLowerCase() === "x") {
+			letterX++
 		}
 	}
-	
-	if (letterX === letterO) {
-		return true
-	} else {
-		return false
-	}
+	 return letterX === letterO
 }
 
 
@@ -183,3 +199,46 @@ XO("xooxx")
 XO("ooxXm") 
 XO("zpzpzpp") 
 XO("zzoo") 
+
+
+/*
+Return the number (count) of vowels in the given string.
+
+We will consider a, e, i, o, u as vowels for this Kata (but not y).
+
+The input string will only consist of lower case letters and/or spaces.
+
+
+*/
+
+
+function getCount(str) {
+	let str2 = str.toLowerCase();
+	let arr = [...str2]
+  	let vowels = 0;
+
+	for(let i=0; i<arr.length; i++){
+		if(arr[i] === "a" || arr[i] === "e" || arr[i] === "i" ||
+		arr[i] === "o" || arr[i] === "u") {
+		 vowels++
+		}
+	}
+
+	return vowels
+
+}
+console.log(getCount("laura"))
+
+	//SOLUTION USING ARRAY.FILTER
+	function countVowels(str) {
+		const vowels = ['a', 'e', 'i', 'o', 'u'];
+		const strArr = str.toLowerCase().split('');
+		const vowelsArr = strArr.filter(char => vowels.includes(char));
+		return vowelsArr.length;
+	  }
+
+	  // 1. Create an array of vowels
+	  // 2. change the string to lower case and split it, to turn it into an array
+	  // 3. It creates a new array (through the use of filter) that contains the vowels from the input 
+	  	/*The test is fro every character of the array, it checks if it inclued elements from the 
+		vowels. If ot does, adds it to the new array*/
