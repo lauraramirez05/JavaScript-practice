@@ -242,3 +242,133 @@ console.log(getCount("laura"))
 	  // 3. It creates a new array (through the use of filter) that contains the vowels from the input 
 	  	/*The test is fro every character of the array, it checks if it inclued elements from the 
 		vowels. If ot does, adds it to the new array*/
+
+/*
+You probably know the "like" system from Facebook and other pages. People can "like" blog posts, 
+pictures or other items. We want to create the text that should be displayed next to such an item.
+
+Implement the function which takes an array containing the names of people that like an item.
+ It must return the display text as shown in the examples:
+
+[]                                -->  "no one likes this"
+["Peter"]                         -->  "Peter likes this"
+["Jacob", "Alex"]                 -->  "Jacob and Alex like this"
+["Max", "John", "Mark"]           -->  "Max, John and Mark like this"
+["Alex", "Jacob", "Mark", "Max"]  -->  "Alex, Jacob and 2 others like this"
+*/
+
+let emptyArr = []
+
+let arr= ["Max", "John", "Mark"]
+arr.splice(-1,0,"and")
+
+function likes(names) {
+	if(names.length === 0) {
+		return ('no one likes this')
+	}else if (names.length === 1) {
+		return(`${names[0]} likes this`)
+	} else if (names.length === 2) {
+		return(`${names[0]} and ${names[1]} like this`)
+	}else if (names.length === 3) {
+		return(`${names[0]}, ${names[1]} and ${names[2]} like this`)
+	} else {
+		return(`${names[0]}, ${names[1]}, and ${names.length-2} others like this`)
+	}
+	
+
+}
+
+likes(emptyArr)                               
+likes(["Peter"])                      
+likes(["Jacob", "Alex"])               
+likes(["Max", "John", "Mark"])        
+likes(["Alex", "Jacob", "Mark", "Max"] )
+
+
+/*
+Write a function that takes a string of braces, and determines if the order of the braces is valid. 
+It should return true if the string is valid, and false if it's invalid.
+
+This Kata is similar to the Valid Parentheses Kata, but introduces new characters: brackets [], 
+and curly braces {}. Thanks to @arnedag for the idea!
+
+All input strings will be nonempty, and will only consist of parentheses, 
+brackets and curly braces: ()[]{}.
+
+What is considered Valid?
+
+A string of braces is considered valid if all braces are matched with the correct brace.
+
+"(){}[]"   =>  True
+"([{}])"   =>  True
+"(}"       =>  False
+"[(])"     =>  False
+"[({})](]" =>  False
+*/
+
+function validBraces(s) {
+  const stack = [];
+  const braces = {  // properties are opening braces, and the values the closing ones
+    '(': ')',
+    '{': '}',
+    '[': ']'
+  };
+
+  /*
+  These lines create an empty array called stack and an object called braces
+	that contains the corresponding closing braces for each opening brace.
+  */
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] in braces) { //If the element in the string belong in the braces variable
+      stack.push(s[i]);
+    } else {
+      const last = stack.pop();
+      if (s[i] !== braces[last]) { //braces[last] gets the value
+        return false;
+      }
+    }
+/*
+This code check if s[i] is an opening bracket, if it is, it is added to the new array. If it is not is assumed that it is a closing
+We assign a new variable to the last opening bracket to the new stack and compare it to the closing bracket, to see if they match
+*/
+  }
+  return stack.length === 0;
+}
+/*
+This line checks whether the stack array is empty. If it is empty, it means that all opening braces
+have been matched with their corresponding closing braces, so the function returns true. 
+Otherwise, it means that there are opening braces that haven't been matched with their corresponding closing braces,
+so the function returns false.
+*/
+
+
+/*
+Given an array of integers, find the one that appears an odd number of times.
+
+There will always be only one integer that appears an odd number of times.
+
+Examples
+
+[7] should return 7, because it occurs 1 time (which is odd).
+[0] should return 0, because it occurs 1 time (which is odd).
+[1,1,2] should return 2, because it occurs 1 time (which is odd).
+[0,1,0,1,0] should return 0, because it occurs 3 times (which is odd).
+[1,2,2,3,3,3,4,3,3,3,2,2,1] should return 4, because it appears 1 time (which is odd).
+
+*/
+
+
+
+function findOdd(A) {
+	let counts = {};
+	A.forEach((x) => {
+		counts[x] = (counts[x] || 0) +1;
+	});
+	for(const item in counts) {
+		if(counts[item]%2 !== 0){
+			return parseInt(item)
+		}
+	}
+}
+
