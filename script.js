@@ -372,3 +372,46 @@ function findOdd(A) {
 	}
 }
 
+/*
+There is an array with some numbers. All numbers are equal except 
+for one. Try to find it!
+
+findUniq([ 1, 1, 1, 2, 1, 1 ]) === 2
+findUniq([ 0, 0, 0.55, 0, 0 ]) === 0.55
+It’s guaranteed that array contains at least 3 numbers.
+*/
+
+function findUniq(arr) {
+  let counts = {}
+
+  arr.forEach((x) => {
+	counts[x] = (counts[x] || 0)+1;
+  });
+  for(const item in counts) {
+	if(counts[item] === 1)
+	return Number(item)
+  }
+}
+findUniq([ 1, 1, 1, 2, 1, 1 ])
+
+
+/*
+Write simple .camelCase method (camel_case function in PHP, CamelCase in C# or camelCase in Java) for strings.
+ All words must have their first letter capitalized without spaces.
+
+For instance:
+
+"hello case".camelCase() => HelloCase
+"camel case word".camelCase() => CamelCaseWord
+*/
+
+
+let str1 = 'hello case'
+
+function camelCase(str) {
+	let newStr = str.split("");
+	console.log(newStr)
+}
+
+camelCase(str1)
+
